@@ -1,0 +1,39 @@
+plugins {
+    id "com.android.application"
+    id "kotlin-android"
+    id "dev.flutter.flutter-gradle-plugin"
+    id "com.google.gms.google-services" // ✅ FlutterFire plugin must come last
+}
+
+android {
+    namespace = "com.example.budget_b"
+    compileSdk = flutter.compileSdkVersion
+    ndkVersion = flutter.ndkVersion
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17 // ✅ Java 17 compatibility
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+
+    kotlinOptions {
+        jvmTarget = "17" // ✅ Kotlin target version
+    }
+
+    defaultConfig {
+        applicationId = "com.example.budget_b"
+        minSdk = 23 // ✅ REQUIRED for firebase_auth and modern plugins
+        targetSdk = flutter.targetSdkVersion
+        versionCode = flutter.versionCode
+        versionName = flutter.versionName
+    }
+
+    buildTypes {
+        release {
+            signingConfig = signingConfigs.debug // 🔐 Use release key for Play Store later
+        }
+    }
+}
+
+flutter {
+    source = "../.."
+}
